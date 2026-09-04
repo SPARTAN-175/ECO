@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 192 192">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d2940"/><stop offset="1" stop-color="#060b14"/></linearGradient></defs>
+<rect width="192" height="192" rx="42" fill="url(#g)"/>
+<circle cx="96" cy="96" r="55" fill="none" stroke="#54d8ff" stroke-width="9" opacity=".9"/>
+<path d="M96 41 A55 55 0 0 1 151 96" fill="none" stroke="#65e6a8" stroke-width="9" stroke-linecap="round"/>
+<circle cx="96" cy="96" r="16" fill="#54d8ff"/>
+<circle cx="96" cy="96" r="6" fill="#07111d"/>
+<text x="96" y="170" text-anchor="middle" fill="#edf5ff" font-family="Arial,sans-serif" font-size="22" font-weight="800" letter-spacing="5">ECO</text>
+</svg>
