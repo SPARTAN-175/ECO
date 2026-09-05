@@ -1,0 +1,11 @@
+ECO v0.5
+Niveles generados: 120
+Niveles validados: 120/120
+Fallos: 0
+Checks:
+- Start → salida conectado.
+- Start/milestone → cada núcleo conectado.
+- Núcleo → puerta correspondiente conectado.
+- Última puerta → salida conectado.
+- Ruta canónica continua.
+- Todos los núcleos aparecen en la ruta canónica.

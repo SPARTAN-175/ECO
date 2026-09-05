@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#050810">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ECO">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<title>ECO</title>
+<style>
+:root{--bg:#050810;--panel:#0b1220;--panel2:#0f1929;--line:#253650;--text:#edf5ff;--muted:#8194af;--cyan:#62f2d2;--blue:#719cff;--red:#ff667e;--gold:#ffd36b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050810;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+body{overscroll-behavior:none;touch-action:none}
+#app{width:100%;height:100%;height:100dvh;display:flex;flex-direction:column;background:radial-gradient(circle at 50% -25%,#182b48 0,#080d17 48%,#050810 100%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+header{height:62px;min-height:62px;display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid #18263a;background:#070d17e8;backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:9px}.mark{width:37px;height:37px;border-radius:11px;background:linear-gradient(145deg,#6cf0d0,#698fff);display:grid;place-items:center;color:#061017;font-weight:1000;box-shadow:0 0 24px #62f2d244}.brand b{font-size:18px;letter-spacing:.18em}.brand small{display:block;color:#8295b1;font-size:8px;letter-spacing:.16em;margin-top:1px}
+.hud{display:flex;gap:7px}.chip{background:#0d1726;border:1px solid #2a3c58;border-radius:12px;padding:7px 10px;font-size:11px;color:#9db0c9}.chip strong{color:#fff;font-size:13px}
+#stage{position:relative;flex:1;min-height:0;display:grid;place-items:center;padding:8px 10px}
+#game{display:block;width:min(100%,1180px);height:auto;max-height:calc(100dvh - 164px);aspect-ratio:31/21;border-radius:17px;border:1px solid #2c3f5d;background:#070c15;box-shadow:0 25px 80px #000b;image-rendering:auto}
+#hint{position:absolute;top:17px;left:50%;transform:translateX(-50%);padding:7px 11px;border:1px solid #2b3e5b;background:#0b1421dd;border-radius:10px;color:#9cb0cb;font-size:10px;pointer-events:none;opacity:1;transition:.4s}
+#hint.hide{opacity:0}
+#controls{height:102px;min-height:102px;display:flex;align-items:center;justify-content:space-between;padding:7px 13px;gap:12px}
+#joy{width:82px;height:82px;flex:0 0 82px;border-radius:50%;border:1px solid #2d405c;background:radial-gradient(circle,#16263a,#0a111e 68%);box-shadow:inset 0 0 25px #0008;position:relative;touch-action:none}
+#knob{position:absolute;left:23px;top:23px;width:36px;height:36px;border-radius:50%;background:linear-gradient(145deg,#8affdf,#55d4bd);box-shadow:0 0 20px #62f2d277}
+.actions{display:flex;justify-content:center;gap:8px;flex:1}.btn{border:1px solid #2a3e5b;background:#0e1827;color:#e7f0fb;border-radius:13px;padding:12px 15px;font-size:11px;font-weight:900;letter-spacing:.05em;min-width:112px;box-shadow:0 7px 22px #0005}.btn.primary{border-color:#389d8b;background:linear-gradient(145deg,#16483f,#132c3a);color:#baffef}.btn:active{transform:scale(.97)}
+#info{width:82px;flex:0 0 82px;text-align:center;color:#8194af;font-size:9px;line-height:1.35}
+#modal{display:none;position:absolute;inset:0;z-index:10;place-items:center;background:#02050bdc;backdrop-filter:blur(9px)}
+.card{width:min(88%,440px);padding:28px;border:1px solid #334967;border-radius:22px;background:linear-gradient(160deg,#101c2c,#09111d);box-shadow:0 35px 100px #000d;text-align:center}.card .tag{color:var(--cyan);font-size:10px;font-weight:900;letter-spacing:.18em}.card h1{font-size:30px;margin:7px 0}.card p{color:#91a5bf;font-size:13px}.row{display:flex;gap:8px}.row button{flex:1}.wide{width:100%;margin-top:8px}.tiny{font-size:10px!important;color:#647a96!important}
+@media(max-width:700px){header{height:55px;min-height:55px}.mark{width:32px;height:32px}.brand b{font-size:16px}.brand small{display:none}.chip{padding:6px 8px}#stage{padding:5px 7px}#game{max-height:calc(100dvh - 150px);border-radius:13px}#controls{height:90px;min-height:90px;padding:4px 8px}.btn{min-width:98px;padding:11px 9px}.actions{gap:5px}#joy{width:72px;height:72px;flex-basis:72px}#knob{left:20px;top:20px;width:32px;height:32px}#info{width:68px;flex-basis:68px}}
+@media(max-width:500px){.btn{min-width:88px;font-size:10px}.chip:first-child{display:none}.brand b{font-size:15px}}
+</style>
+</head>
+<body>
+<div id="app">
+<header>
+  <div class="brand"><div class="mark">E</div><div><b>ECO</b><small>YOUR PAST IS YOUR TOOL</small></div></div>
+  <div class="hud"><div class="chip">NIVEL <strong id="level">1</strong><span>/120</span></div><div class="chip">ECOS <strong id="ecos">0</strong></div></div>
+</header>
+<main id="stage">
+  <canvas id="game" width="930" height="630"></canvas>
+  <div id="hint">Llega a un núcleo y crea un ECO para abrir su puerta.</div>
+  <div id="modal"><div class="card">
+    <div class="tag">SECUENCIA COMPLETADA</div><h1 id="title">NIVEL SUPERADO</h1><p id="msg"></p>
+    <div class="row"><button class="btn" id="again">REPETIR</button><button class="btn primary" id="next">SIGUIENTE →</button></div>
+    <button class="btn wide" id="full">PANTALLA COMPLETA</button>
+    <p class="tiny">ECO v0.5 · 120 niveles verificados</p>
+  </div></div>
+</main>
+<footer id="controls">
+  <div id="joy"><div id="knob"></div></div>
+  <div class="actions"><button class="btn primary" id="make">CREAR ECO</button><button class="btn" id="reset">REINICIAR</button></div>
+  <div id="info">WASD / flechas<br>también funciona</div>
+</footer>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
