@@ -1,4 +1,4 @@
-const T=30,COLS=31,ROWS=21,canvas=document.querySelector("#game"),ctx=canvas.getContext("2d");
+const T=30,COLS=31,ROWS=21,WORLD_W=930,WORLD_H=630,canvas=document.querySelector("#game"),ctx=canvas.getContext("2d");
 let levels=[],L=null,player={x:0,y:0},ecos=[],keys={},stick={x:0,y:0},last=0,won=false,hintTimer=null;
 const $=s=>document.querySelector(s),levelEl=$("#level"),ecosEl=$("#ecos"),modal=$("#modal"),msg=$("#msg"),title=$("#title"),hint=$("#hint");
 fetch("levels.json").then(r=>r.json()).then(d=>{levels=d.levels;load(Number(localStorage.getItem("eco_level")||1));requestAnimationFrame(loop)});
@@ -46,8 +46,11 @@ function direction(){
  return (stick.x||stick.y)?stick:{x,y};
 }
 function draw(){
- ctx.clearRect(0,0,930,630);
- // floor/walls
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ const scale=Math.min(canvas.width/WORLD_W,canvas.height/WORLD_H);
+ const ox=(canvas.width-WORLD_W*scale)/2,oy=(canvas.height-WORLD_H*scale)/2;
+ ctx.save();ctx.translate(ox,oy);ctx.scale(scale,scale);
+ ctx.fillStyle="#070c15";ctx.fillRect(0,0,WORLD_W,WORLD_H);
  for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){
   const px=x*T,py=y*T;
   if(L.grid[y][x]==="#"){
@@ -59,33 +62,31 @@ function draw(){
    ctx.fillStyle="#111d2c";ctx.fillRect(px+2,py+2,T-4,1);
   }
  }
- // doors
  for(const d of L.doors){
-  const q=center(d),o=doorOpen(d);ctx.fillStyle=o?"#174a42":"#642c3a";ctx.fillRect(d.x*T+3,d.y*T+3,T-6,T-6);
+  const q=center(d),o=doorOpen(d);
+  ctx.fillStyle=o?"#174a42":"#642c3a";ctx.fillRect(d.x*T+3,d.y*T+3,T-6,T-6);
   ctx.strokeStyle=o?"#63f0d1":"#ff627c";ctx.lineWidth=2;ctx.strokeRect(d.x*T+5,d.y*T+5,T-10,T-10);
   ctx.fillStyle="#fff";ctx.font="900 10px system-ui";ctx.textAlign="center";ctx.fillText(d.requires,q.x,q.y+3);
  }
- // buttons / cores
  for(const b of L.buttons){
   const q=center(b),on=ecos.some(e=>e.buttonId===b.id);
   ctx.beginPath();ctx.arc(q.x,q.y,10,0,Math.PI*2);ctx.fillStyle=on?"#5fe6c9":"#3d4d66";ctx.fill();
   ctx.beginPath();ctx.arc(q.x,q.y,15,0,Math.PI*2);ctx.strokeStyle=on?"#5fe6c9":"#53647e";ctx.globalAlpha=.65;ctx.stroke();ctx.globalAlpha=1;
   ctx.fillStyle="#e8f2ff";ctx.font="900 9px system-ui";ctx.fillText(b.id,q.x,q.y-19);
  }
- // exit
- const ex=center(L.exit);ctx.beginPath();ctx.arc(ex.x,ex.y,14,0,Math.PI*2);ctx.strokeStyle="#719cff";ctx.lineWidth=3;ctx.stroke();
+ const ex=center(L.exit);
+ ctx.beginPath();ctx.arc(ex.x,ex.y,14,0,Math.PI*2);ctx.strokeStyle="#719cff";ctx.lineWidth=3;ctx.stroke();
  ctx.beginPath();ctx.arc(ex.x,ex.y,5,0,Math.PI*2);ctx.fillStyle="#719cff";ctx.fill();
  ctx.fillStyle="#91b2ff";ctx.font="900 8px system-ui";ctx.fillText("SALIDA",ex.x,ex.y+25);
- // echoes
  for(const e of ecos){
   ctx.beginPath();ctx.arc(e.x,e.y,14,0,Math.PI*2);ctx.strokeStyle="#719cff";ctx.globalAlpha=.3;ctx.lineWidth=5;ctx.stroke();ctx.globalAlpha=1;
   ctx.beginPath();ctx.arc(e.x,e.y,9,0,Math.PI*2);ctx.fillStyle="#719cff";ctx.fill();
   ctx.fillStyle="#fff";ctx.font="900 8px system-ui";ctx.fillText("E"+e.buttonId,e.x,e.y+3);
  }
- // player glow
  ctx.beginPath();ctx.arc(player.x,player.y,19,0,Math.PI*2);ctx.fillStyle="#62f2d21c";ctx.fill();
  ctx.beginPath();ctx.arc(player.x,player.y,9,0,Math.PI*2);ctx.fillStyle="#f7ffff";ctx.fill();
  ctx.strokeStyle="#62f2d2";ctx.lineWidth=2;ctx.stroke();
+ ctx.restore();
 }
 function loop(t){const dt=Math.min((t-last)/1000,.035);last=t;if(!won){const d=direction();move(d.x,d.y,dt)}draw();requestAnimationFrame(loop)}
 addEventListener("keydown",e=>{keys[e.key]=true;if(e.key===" "){e.preventDefault();makeEco()}});

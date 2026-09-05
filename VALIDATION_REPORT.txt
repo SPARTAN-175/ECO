@@ -9,3 +9,6 @@ Checks:
 - Última puerta → salida conectado.
 - Ruta canónica continua.
 - Todos los núcleos aparecen en la ruta canónica.
+
+
+v0.5.1: cambios exclusivamente de interfaz/pantalla; niveles sin modificaciones.

@@ -1,16 +1,6 @@
-ECO v0.5 — ANDROID PRO
-
-1. Sube TODOS los archivos de esta carpeta a la raíz de GitHub Pages.
-2. Abre la web desde Chrome en Android.
-3. Usa el menú de Chrome → Instalar aplicación / Instalar ECO.
-4. Abre ECO desde el icono instalado, no desde la pestaña del navegador.
-
-Cambios:
-- PWA Android-first en pantalla completa.
-- Orientación horizontal.
-- Safe-area para evitar deformaciones.
-- Iconos PNG reales 192/512.
-- Manifest con id/scope/start_url.
-- 120 niveles con rutas verificadas antes del empaquetado.
-- Juego rediseñado para móvil.
-- Pantalla completa mediante manifest + fallback Fullscreen API.
+ECO v0.5.1 — ANDROID PRO
+Ajuste visual solicitado:
+- El tablero usa una relación 16:9 y conserva la proporción real del mundo 31x21 dentro del tablero, con márgenes laterales; ya no se deforma para llenar la pantalla.
+- El control de movimiento se desplazó hacia dentro aproximadamente 1 cm.
+- Se mantiene fullscreen, landscape, PWA e iconos PNG.
+- Se mantienen los 120 niveles validados.
