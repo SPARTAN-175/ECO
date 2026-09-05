@@ -1,5 +1,0 @@
-ECO v0.4
-120 niveles generados.
-120/120 validados.
-0 fallos.
-Conectividad Start→botones→puertas→salida y ruta canónica comprobadas antes del empaquetado.
