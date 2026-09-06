@@ -1,1 +1,0 @@
-Sube todo a la raíz de GitHub Pages. Reinstala la PWA después de actualizar. ECO: joystick, ECOs, enemigos y música.
