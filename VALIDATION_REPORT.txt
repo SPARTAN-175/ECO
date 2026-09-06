@@ -1,14 +1,5 @@
-ECO v0.5
-Niveles generados: 120
-Niveles validados: 120/120
-Fallos: 0
-Checks:
-- Start → salida conectado.
-- Start/milestone → cada núcleo conectado.
-- Núcleo → puerta correspondiente conectado.
-- Última puerta → salida conectado.
-- Ruta canónica continua.
-- Todos los núcleos aparecen en la ruta canónica.
-
-
-v0.5.1: cambios exclusivamente de interfaz/pantalla; niveles sin modificaciones.
+ECO v0.6
+120/120 niveles presentes y validados por conectividad de ruta.
+Enemigos incluidos fuera de la ruta canónica.
+Música procedural WebAudio incluida.
+JS syntax: OK.

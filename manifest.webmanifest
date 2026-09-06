@@ -1,7 +1,7 @@
 {
   "name": "ECO \u2014 Echo Puzzle",
   "short_name": "ECO",
-  "id": "./eco-app",
+  "id": "./eco-v06",
   "start_url": "./",
   "scope": "./",
   "display": "fullscreen",
@@ -9,10 +9,9 @@
     "fullscreen",
     "standalone"
   ],
+  "orientation": "landscape",
   "background_color": "#050810",
   "theme_color": "#050810",
-  "orientation": "landscape",
-  "prefer_related_applications": false,
   "icons": [
     {
       "src": "assets/icon-192.png",
