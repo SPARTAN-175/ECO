@@ -1,0 +1,7 @@
+ECO v0.7
+120/120 niveles validados.
+Generador: laberinto DFS real.
+Cada nivel: ruta inicio→salida y enemigos alcanzables comprobados.
+Pantalla completa: canvas conserva proporción 31:21 mediante resize uniforme.
+Enemigos visibles en todos los niveles.
+JS: sintaxis comprobada con Node.
